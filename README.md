@@ -4,7 +4,7 @@ Preliminary steps:
 
 In Ubuntu:
 
-2.  Go to your main project directory (ex. suli folder),then create a new module for the project (e.g. flask-http-assignment). Make sure to stay in this directory at all times during the project.
+2.  Go to your main project directory (e.g. suli folder), then create a new module for the project (e.g. flask-http-assignment). Make sure to stay in this directory at all times during the project.
 
 3. Create and/or activate virtual environment.
 
