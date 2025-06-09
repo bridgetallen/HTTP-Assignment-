@@ -1,6 +1,6 @@
 Preliminary steps: 
 
-1. Make a new repository on the github browser
+1. Make a new repository on the github browser, in this case, clone this repository
 
 In Ubuntu:
 
