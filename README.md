@@ -1,24 +1,39 @@
-Getting Started: 
+## Getting Started
 
-1. Clone this repository to your local machine
+Clone this repository to your local machine.
 
-In terminal:
+(Optional) Create and activate a Python virtual environment based on your operating system.  
+You can also visit [https://www.omdbapi.com/apikey.aspx](https://www.omdbapi.com/apikey.aspx) if working with APIs that require keys.
 
-2.  Go to your main project directory (e.g. suli folder), then create a new module for the project (e.g. flask-http-assignment). Make sure to stay in this directory at all times during the project.
+Install required dependencies using pip:
 
-3. (Optional) Create and/or activate virtual environment based on your operating system.
+```
+pip install flask requests
+```
 
-4. Install required dependencies: flask and requests. 
+Run your server:
 
-5. The Flask server is already built and includes three endpoints (see app.py for code).
+```
+python app.py
+```
 
-6. run your server with python app.py.
+---
 
-  API Overview 
+## API Overview
 
-1. First end point: uses the GET method to display a message. (how weather and stocks app works).
+- **GET /**  
+  Returns a plain "Hello World!" message.  
+  Used to verify the server is running.
 
-2. Second end point: uses the POST method to echo a JSON (how apps like Instagram work).
+- **POST /echo**  
+  Accepts a JSON payload in the request body and returns it back in the response.  
+  Demonstrates how user input is received and returned.
 
-3. Third end point: uses the GET method along with a route to interact with the flask which sends a request to the server.
+- **GET /pokemon/<name>**  
+  Proxies a request to the public [PokeAPI](https://pokeapi.co/) and returns real-time Pokémon data.  
+  Shows how a Flask app can interact with an external API to serve live data.
+
+
+
+
 
