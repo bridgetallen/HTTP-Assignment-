@@ -8,7 +8,7 @@ In Ubuntu:
 
 3. Create and/or activate virtual environment.
 
-4. pip install flask. 
+4. pip install flask and requests. 
 
 5. create app.py.
 
