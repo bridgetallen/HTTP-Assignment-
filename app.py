@@ -25,7 +25,24 @@ def get_pokemon(name):
     else:
         return jsonify({"error": "Pokémon not found"}), response.status_code
 
+@app.route("/multiply", methods=["POST"])
+def multiply_matrices():
+    data = request.get_json()
 
+    try:
+        A = data["A"]
+        B = data["B"]
+        C = data.get("C")  # optional third matrix
+
+        import numpy as np
+        result = np.matmul(A, B)
+        if C:
+            result = np.matmul(result, C)
+
+        return jsonify({"result": result.tolist()}), 200  # ✅ convert ndarray to list
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
 if __name__ == "__main__":
     app.run(debug=True)
 
