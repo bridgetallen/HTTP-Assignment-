@@ -8,7 +8,7 @@ You can also visit [https://www.omdbapi.com/apikey.aspx](https://www.omdbapi.com
 Install required dependencies using pip:
 
 ```
-pip install flask requests
+pip install flask requests numpy
 ```
 
 Run your server:
@@ -32,6 +32,10 @@ python app.py
 - **GET /pokemon/<name>**  
   Proxies a request to the public [PokeAPI](https://pokeapi.co/) and returns real-time Pokémon data.  
   Shows how a Flask app can interact with an external API to serve live data.
+
+- **POST /multiply**
+Accepts two or three matrices (A, B, and optionally C) in JSON format and returns the result of matrix multiplication.
+Demonstrates how server-side computation is done using NumPy.
 
 
 
