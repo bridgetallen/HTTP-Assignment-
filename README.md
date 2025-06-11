@@ -41,7 +41,8 @@ python app.py
   Accepts a JSON payload with `base` and `exponent`, and returns the result of raising the base to the exponent using exponentiation by squaring.  
   Efficient for large powers and supports negative exponents.  
 
-
+  - **POST /matrix_power**
+    This route accepts a square matrix and an integer exponent, and efficiently computes the matrix raised to that power using exponentiation by squaring. It also handles negative exponents (via matrix inversion).
 
 
 
