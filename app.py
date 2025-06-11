@@ -43,6 +43,33 @@ def multiply_matrices():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 400
+
+@app.route("/power", methods=["POST"])
+def power():
+    data = request.get_json()
+    base = data.get("base")
+    exponent = data.get("exponent")
+
+    if not isinstance(base, (int, float)) or not isinstance(exponent, int):
+        return jsonify({"error": "Base must be a number, exponent must be an integer."}), 400
+
+    result = 1
+    b = base
+    e = exponent
+
+    if e < 0:
+        b = 1 / b
+        e = -e
+
+    while e > 0:
+        if e % 2 == 1:
+            result *= b
+        b *= b
+        e //= 2
+
+    return jsonify({"result": result}), 200
+
+
 if __name__ == "__main__":
     app.run(debug=True)
 
