@@ -34,8 +34,13 @@ python app.py
   Shows how a Flask app can interact with an external API to serve live data.
 
 - **POST /multiply**
-Accepts two or three matrices (A, B, and optionally C) in JSON format and returns the result of matrix multiplication.
-Demonstrates how server-side computation is done using NumPy.
+  Accepts two or three matrices (A, B, and optionally C) in JSON format and returns the result of matrix multiplication.
+  Demonstrates how server-side computation is done using NumPy.
+
+  - **POST /power**  
+  Accepts a JSON payload with `base` and `exponent`, and returns the result of raising the base to the exponent using exponentiation by squaring.  
+  Efficient for large powers and supports negative exponents.  
+
 
 
 
