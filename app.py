@@ -101,6 +101,51 @@ def matrix_power():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 400
+#  Plain matrix multiplication
+def matrix_multiply(A, B):
+    rows_A, cols_A = len(A), len(A[0])
+    rows_B, cols_B = len(B), len(B[0])
+
+    if cols_A != rows_B:
+        raise ValueError("Matrix dimensions do not allow multiplication")
+
+    result = [[0 for _ in range(cols_B)] for _ in range(rows_A)]
+
+    for i in range(rows_A):
+        for j in range(cols_B):
+            for k in range(cols_A):
+                result[i][j] += A[i][k] * B[k][j]
+
+    return result
+
+#  Exponentiation by squaring for square matrices
+def matrix_power(matrix, exponent):
+    if len(matrix) != len(matrix[0]):
+        raise ValueError("Matrix must be square")
+
+    # Identity matrix
+    size = len(matrix)
+    result = [[1 if i == j else 0 for j in range(size)] for i in range(size)]
+
+    while exponent > 0:
+        if exponent % 2 == 1:
+            result = matrix_multiply(result, matrix)
+        matrix = matrix_multiply(matrix, matrix)
+        exponent //= 2
+
+    return result
+
+#  New Flask route
+@app.route("/matrix_power_plain", methods=["POST"])
+def matrix_power_plain():
+    data = request.get_json()
+    try:
+        matrix = data["matrix"]
+        exponent = int(data["exponent"])
+        result = matrix_power(matrix, exponent)
+        return jsonify({"result": result}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
 
 
 if __name__ == "__main__":
