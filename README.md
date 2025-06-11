@@ -44,6 +44,7 @@ python app.py
 - **POST /matrix_power**
   This route accepts a square matrix and an integer exponent, and efficiently computes the matrix raised to that power using exponentiation by squaring. It also handles negative exponents (via matrix inversion).
 
-
+- **POST /matrix_power_plain**
+  Raises a square matrix (with integer values) to a given exponent using pure Python, without NumPy.
 
 
