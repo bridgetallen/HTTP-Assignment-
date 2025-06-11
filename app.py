@@ -68,6 +68,39 @@ def power():
         e //= 2
 
     return jsonify({"result": result}), 200
+@app.route("/matrix_power", methods=["POST"])
+def matrix_power():
+    data = request.get_json()
+    matrix = data.get("matrix")
+    exponent = data.get("exponent")
+
+    if not isinstance(matrix, list) or not isinstance(exponent, int):
+        return jsonify({"error": "Matrix must be a list of lists and exponent must be an integer."}), 400
+
+    try:
+        import numpy as np
+        A = np.array(matrix)
+
+        if A.shape[0] != A.shape[1]:
+            return jsonify({"error": "Matrix must be square (same number of rows and columns)."}), 400
+
+        def matrix_exp(A, exp):
+            result = np.identity(A.shape[0])
+            if exp < 0:
+                A = np.linalg.inv(A)
+                exp = -exp
+            while exp > 0:
+                if exp % 2 == 1:
+                    result = np.matmul(result, A)
+                A = np.matmul(A, A)
+                exp //= 2
+            return result
+
+        powered = matrix_exp(A, exponent)
+        return jsonify({"result": powered.tolist()}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
 
 
 if __name__ == "__main__":
