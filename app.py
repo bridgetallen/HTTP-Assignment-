@@ -66,8 +66,8 @@ def power():
             result *= b
         b *= b
         e //= 2
-
     return jsonify({"result": result}), 200
+
 @app.route("/matrix_power", methods=["POST"])
 def matrix_power():
     data = request.get_json()
@@ -78,7 +78,6 @@ def matrix_power():
         return jsonify({"error": "Matrix must be a list of lists and exponent must be an integer."}), 400
 
     try:
-        import numpy as np
         A = np.array(matrix)
 
         if A.shape[0] != A.shape[1]:
@@ -101,7 +100,8 @@ def matrix_power():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 400
-#  Plain matrix multiplication
+
+#  Plain Python matrix multiplication
 def matrix_multiply(A, B):
     rows_A, cols_A = len(A), len(A[0])
     rows_B, cols_B = len(B), len(B[0])
@@ -118,12 +118,11 @@ def matrix_multiply(A, B):
 
     return result
 
-#  Exponentiation by squaring for square matrices
-def matrix_power(matrix, exponent):
+#  Plain Python matrix exponentiation
+def matrix_power_plain_impl(matrix, exponent):
     if len(matrix) != len(matrix[0]):
         raise ValueError("Matrix must be square")
 
-    # Identity matrix
     size = len(matrix)
     result = [[1 if i == j else 0 for j in range(size)] for i in range(size)]
 
@@ -135,19 +134,17 @@ def matrix_power(matrix, exponent):
 
     return result
 
-#  New Flask route
+#  Route using plain Python implementation
 @app.route("/matrix_power_plain", methods=["POST"])
 def matrix_power_plain():
     data = request.get_json()
     try:
         matrix = data["matrix"]
         exponent = int(data["exponent"])
-        result = matrix_power(matrix, exponent)
+        result = matrix_power_plain_impl(matrix, exponent)
         return jsonify({"result": result}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
-
 if __name__ == "__main__":
     app.run(debug=True)
-
