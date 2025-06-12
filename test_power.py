@@ -20,6 +20,22 @@ def test_power_of_two():
 
 from app import app
 
+def test_pokemon_endpoint():
+    client = app.test_client()
+    response = client.get("/pokemon/pikachu")
+    
+    assert response.status_code == 200
+    
+    data = response.get_json()
+    
+    assert "name" in data
+    assert data["name"] == "pikachu"
+    assert "id" in data
+    assert "types" in data
+
+
+from app import app
+
 def test_home():
     client = app.test_client()
     response = client.get("/")
