@@ -146,5 +146,9 @@ def matrix_power_plain():
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
+def power_of_two(exponent):
+    return 2 ** exponent
+
+
 if __name__ == "__main__":
     app.run(debug=True)
