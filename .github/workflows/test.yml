@@ -1,13 +1,13 @@
 name: Run Pytest Tests
 
 on:
-push:                    # Run on push to any branch
-branches: [ main ]
+  push:                    # Run on push to main
+    branches: [ main ]
   pull_request:            # Run on PRs targeting main
-branches: [ main ]
-  workflow_dispatch:   # Manual run button
+    branches: [ main ]
+  workflow_dispatch:       # Manual run button
   schedule:
-    - cron: '0 13 * * *'  # Daily at 9:00 AM Eastern (13:00 UTC)
+    - cron: '0 13 * * *'   # Daily at 9:00 AM Eastern (13:00 UTC)
 
 jobs:
   test:
@@ -29,4 +29,3 @@ jobs:
 
       - name: Run tests
         run: pytest
-
